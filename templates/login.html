@@ -2,32 +2,165 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar sesión</title>
+    <title>OpenAI Academy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f8f9fa; }
+        .sidebar {
+            background: #fff;
+            min-height: 100vh;
+            border-right: 1px solid #e5e7eb;
+        }
+        .sidebar .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 24px;
+        }
+        .search-box {
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            padding: 6px 12px;
+            width: 250px;
+        }
+        .featured-card {
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 260px;
+            background: #e0e7ef;
+            position: relative;
+        }
+        .featured-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .tag {
+            font-size: 11px;
+            background: #f3f4f6;
+            color: #6366f1;
+            border-radius: 4px;
+            padding: 2px 8px;
+            margin-right: 4px;
+        }
+        .content-list .list-group-item {
+            border: none;
+            border-bottom: 1px solid #f1f1f1;
+            background: transparent;
+        }
+        .content-list .list-group-item:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <h3 class="text-center">Iniciar sesión</h3>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <div class="alert alert-danger">{{ messages[0] }}</div>
-                    {% endif %}
-                {% endwith %}
-                <form method="POST" action="{{ url_for('do_login') }}">
-                    <div class="mb-3">
-                        <label class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                </form>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-none d-md-block sidebar py-4">
+            <div class="d-flex align-items-center mb-4 ps-3">
+                <!-- Microsoft SVG Logo -->
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                  <rect x="2" y="2" width="12" height="12" fill="#F25022"/>
+                  <rect x="18" y="2" width="12" height="12" fill="#7FBA00"/>
+                  <rect x="2" y="18" width="12" height="12" fill="#00A4EF"/>
+                  <rect x="18" y="18" width="12" height="12" fill="#FFB900"/>
+                </svg>
+                <i class="fa-brands fa-openai fa-2x me-2" style="color:#6366f1;"></i>
+                <span class="fw-bold fs-5">OpenAI Academy</span>
             </div>
-        </div>
+            <ul class="nav flex-column ps-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link active" href="#"><i class="fa fa-home me-2"></i> Home</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#"><i class="fa fa-calendar me-2"></i> Events</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#"><i class="fa fa-compass me-2"></i> Content</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#"><i class="fa fa-question-circle me-2"></i> Help</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Main content -->
+        <main class="col-md-10 ms-sm-auto px-4">
+            <!-- Topbar -->
+            <div class="d-flex justify-content-between align-items-center topbar">
+                <form class="d-flex align-items-center">
+                    <input class="form-control search-box me-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <div class="d-flex align-items-center">
+                    <span class="me-3 text-muted">-06:00 CST</span>
+                    <a href="#" class="btn btn-link text-decoration-none">SIGN IN</a>
+                </div>
+            </div>
+            <!-- Featured section -->
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <div class="featured-card p-4 mb-4 bg-white shadow-sm">
+                        <div class="mb-3">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Mastering Prompts" class="w-100 rounded-3">
+                        </div>
+                        <div class="mb-2">
+                            <span class="tag"># ChatGPT on Campus</span>
+                            <span class="tag" style="color:#059669;"># Higher Education</span>
+                        </div>
+                        <h4 class="fw-bold">Mastering Prompts: The Key to Getting What You Need from ChatGPT</h4>
+                        <span class="text-muted">8:56</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <div class="card mb-2 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="card-img-top" style="height:90px;object-fit:cover;">
+                            <div class="card-body p-2">
+                                <div class="fw-bold small">Intro to AI for K-12 Educators</div>
+                                <div class="text-muted small">Sam Canning-Kaplan & Jennifer Ehehalt</div>
+                                <span class="text-muted small">10:15</span>
+                            </div>
+                        </div>
+                        <div class="card shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" class="card-img-top" style="height:90px;object-fit:cover;">
+                            <div class="card-body p-2">
+                                <div class="fw-bold small">Introduction to Prompt Engineering</div>
+                                <span class="text-muted small">5:52</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content list -->
+            <div class="row mt-3">
+                <div class="col-lg-8"></div>
+                <div class="col-lg-4">
+                    <ul class="list-group content-list">
+                        <li class="list-group-item">Market research with ChatGPT</li>
+                        <li class="list-group-item">Shipping code to your IDE with ChatGPT</li>
+                        <li class="list-group-item">Strategic planning with ChatGPT</li>
+                        <li class="list-group-item">Creating a contextual workspace in ChatGPT</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Collections -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h5 class="fw-bold">Collections</h5>
+                </div>
+            </div>
+        </main>
     </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
