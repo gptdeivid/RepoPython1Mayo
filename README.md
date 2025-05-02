@@ -1,4 +1,4 @@
-# GitHub Git Cheat Sheet
+# GitHub 2 de Mayo
 
 Git es el sistema de control de versiones distribuido de código abierto que facilita las actividades de GitHub en tu laptop o computadora de escritorio. Esta hoja de referencia resume las instrucciones de línea de comandos de Git más utilizadas para una consulta rápida.
 
